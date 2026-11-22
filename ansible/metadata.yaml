@@ -1,25 +1,26 @@
 ---
+# GitHub Pages serves .json as application/json, required by Vagrant to detect box metadata
 - name: Get GitHub release {{ vagrant_box_name }}
   ansible.builtin.include_tasks: github_release.yaml
 
-- name: Create metadata directory
-  ansible.builtin.tempfile:
-    state: directory
-  register: metadata_dir
+- name: Build Vagrant Box metadata
+  ansible.builtin.set_fact:
+    vagrant_box_metadata: "{{ github_release_assets|box_versions(vagrant_box_name)|box_metadata(vagrant_cloud_user ~ '/' ~ vagrant_box_name, vagrant_box_description)|to_nice_json }}\n"
 
-- name: Write Vagrant Box metadata {{ vagrant_box_metadata_file }}
-  ansible.builtin.copy:
-    content: "{{ github_release_assets|box_versions(vagrant_box_name)|box_metadata(vagrant_cloud_user ~ '/' ~ vagrant_box_name, vagrant_box_description)|to_nice_json }}"
-    dest: "{{ metadata_dir.path }}/{{ vagrant_box_metadata_file }}"
+- name: Get published Vagrant Box metadata {{ vagrant_box_metadata_path }}
+  ansible.builtin.command: gh api repos/{{ github_repository }}/contents/{{ vagrant_box_metadata_path }}?ref={{ github_pages_branch }}
+  register: gh_pages_metadata
+  changed_when: false
+  failed_when: gh_pages_metadata.rc != 0 and 'HTTP 404' not in gh_pages_metadata.stderr
 
-- name: Upload Vagrant Box metadata {{ vagrant_box_metadata_url }}
-  ansible.builtin.command: gh release upload {{ vagrant_box_name }} {{ metadata_dir.path }}/{{ vagrant_box_metadata_file }} --clobber --repo {{ github_repository }}
-  register: gh_upload_metadata
-  retries: 3
-  delay: 5
-  until: gh_upload_metadata is success
-
-- name: Remove metadata directory
-  ansible.builtin.file:
-    path: "{{ metadata_dir.path }}"
-    state: absent
+- name: Publish Vagrant Box metadata {{ vagrant_box_metadata_url }}
+  when: gh_pages_metadata.rc != 0 or published.content|replace('\n', '')|b64decode != vagrant_box_metadata
+  ansible.builtin.command: gh api -X PUT repos/{{ github_repository }}/contents/{{ vagrant_box_metadata_path }} --input -
+  args:
+    stdin: "{{ body|combine({'sha': published.sha} if gh_pages_metadata.rc == 0 else {})|to_json }}"
+  vars:
+    published: "{{ gh_pages_metadata.stdout|from_json if gh_pages_metadata.rc == 0 else {} }}"
+    body:
+      message: "Update {{ vagrant_box_metadata_path }}"
+      branch: "{{ github_pages_branch }}"
+      content: "{{ vagrant_box_metadata|b64encode }}"

@@ -123,14 +123,19 @@ end
 
 Boxes are hosted as [GitHub release](https://github.com/alchemy-solutions/vagrant-cloud-images/releases) assets, one
 release per box. Since there is no Vagrant Cloud anymore, point `box_url` to
-the box metadata file published with each release:
+the box metadata published on GitHub Pages:
 
 ```ruby
 config.vm.box = "cloud-image/<choose-a-distro>"
-config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+config.vm.box_url = "https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json"
 ```
 
-`vagrant box outdated` and `vagrant box update` keep working as before.
+Boxes previously added from Vagrant Cloud keep checking it for updates,
+re-add them once to switch to the new location:
+
+```bash
+vagrant box add --force https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json
+```
 
 There are multiple Vagrant providers available:
 
@@ -142,7 +147,7 @@ There are multiple Vagrant providers available:
 ## virtualbox
 
 ```bash
-vagrant init cloud-image/<choose-a-distro> https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json
+vagrant init cloud-image/<choose-a-distro> https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json
 vagrant up
 ```
 
@@ -161,7 +166,7 @@ Create a minimal `Vagrantfile` as follow:
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "cloud-image/<choose-a-distro>"
-  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+  config.vm.box_url = "https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 end
 ```
@@ -182,7 +187,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-libvirt"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
-  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+  config.vm.box_url = "https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
 
@@ -237,7 +242,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
-  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+  config.vm.box_url = "https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :qemu do |qemu|
@@ -268,7 +273,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
-  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+  config.vm.box_url = "https://alchemy-solutions.github.io/vagrant-cloud-images/cloud-image/<choose-a-distro>.json"
   config.vm.box_architecture = "amd64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 

@@ -19,6 +19,20 @@ Use `-e` to set a variable:
 ./build.sh -e filter_distro=centos -e filter_arch=arm64 -e preserve=true -e upload=false
 ```
 
+Boxes are uploaded to one GitHub release per box, and the Vagrant box metadata is
+published to the `gh-pages` branch (served by GitHub Pages). One-time setup of the
+repository:
+
+```bash
+git switch --orphan gh-pages
+touch .nojekyll
+git add .nojekyll
+git commit -m "Initialize GitHub Pages"
+git push origin gh-pages
+```
+
+Then enable GitHub Pages from the `gh-pages` branch in the repository settings.
+
 Set `GITHUB_REPOSITORY` (e.g. `myuser/vagrant-cloud-images`) to upload to a fork.
 
 ## Environment Variables

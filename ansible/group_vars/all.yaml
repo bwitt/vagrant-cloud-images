@@ -37,8 +37,11 @@ github_repository: "{{ lookup('env', 'GITHUB_REPOSITORY', default='alchemy-solut
 github_url: "https://github.com/{{ github_repository }}"
 vagrant_cloud_user: "{{ lookup('env', 'VAGRANT_CLOUD_USER', default='cloud-image') }}"
 vagrant_box_description: "{{ release.description }} Cloud Image"
-vagrant_box_metadata_file: "{{ vagrant_box_name }}.json"
-vagrant_box_metadata_url: "{{ github_url }}/releases/download/{{ vagrant_box_name }}/{{ vagrant_box_metadata_file }}"
+# Box metadata is published on GitHub Pages
+github_pages_branch: gh-pages
+github_pages_url: "https://{{ github_repository.split('/')|first }}.github.io/{{ github_repository.split('/')|last }}"
+vagrant_box_metadata_path: "{{ vagrant_cloud_user }}/{{ vagrant_box_name }}.json"
+vagrant_box_metadata_url: "{{ github_pages_url }}/{{ vagrant_box_metadata_path }}"
 vagrant_ssh_default_key_pub: "{{ lookup('url', 'https://raw.githubusercontent.com/hashicorp/vagrant/refs/heads/master/keys/vagrant.pub') }}"
 vagrant_ssh_key_pub: "{{ lookup('env', 'VAGRANT_SSH_KEY_PUB', default=vagrant_ssh_default_key_pub) }}"
 
