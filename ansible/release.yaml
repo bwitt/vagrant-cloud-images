@@ -3,25 +3,24 @@
   set_fact:
     vagrant_box_name: "{{ distro.code }}-{{ release.code|default(release.version) }}"
 
-- name: Refresh VAGRANT_CLOUD_TOKEN
-  include_tasks: hcp.yaml
+- name: Get GitHub release {{ vagrant_box_name }}
+  include_tasks: github_release.yaml
 
-- name: Create Vagrant Box Registry for {{ vagrant_box_name }}
-  when: create|bool
-  uri:
-    url: "{{ vagrant_cloud_url }}/registry/{{ vagrant_cloud_user }}/boxes"
-    method: POST
-    body_format: json
-    return_content: true
-    headers:
-      Content-Type: application/json
-      Authorization: "Bearer {{ vagrant_cloud_token }}"
-    body:
-      name: "{{ vagrant_box_name }}"
-      short_description: "{{ release.description }} Cloud Image"
-  register: hcp_create_box
-  failed_when: hcp_create_box.status not in [200, 409]
-  changed_when: hcp_create_box.status == 200
+- name: Create GitHub release {{ vagrant_box_name }}
+  when:
+  - create|bool
+  - gh_release.rc != 0
+  command: gh release create {{ vagrant_box_name }} --repo {{ github_repository }} --latest=false --title "{{ vagrant_box_description }}" --notes-file -
+  args:
+    stdin: "{{ lookup('template', 'description.md.j2') }}"
+
+- name: Update GitHub release {{ vagrant_box_name }} notes
+  when:
+  - update|bool
+  - gh_release.rc == 0
+  command: gh release edit {{ vagrant_box_name }} --repo {{ github_repository }} --title "{{ vagrant_box_description }}" --notes-file -
+  args:
+    stdin: "{{ lookup('template', 'description.md.j2') }}"
 
 - name: Set expiration
   set_fact:
@@ -34,6 +33,10 @@
   loop: "{{ release.arch }}"
   loop_control:
     loop_var: arch
+
+- name: Update Vagrant Box metadata
+  when: upload|bool
+  include_tasks: metadata.yaml
 
 - name: Skip expired release
   when:

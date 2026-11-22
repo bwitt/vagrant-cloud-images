@@ -7,7 +7,7 @@
   failed_when: false
   register: command_check
   loop:
-  - hcp
+  - gh
   - qemu-img
   - unxz
   - "{{ guestfs }}"

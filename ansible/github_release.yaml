@@ -1,0 +1,10 @@
+---
+- name: Get GitHub release {{ vagrant_box_name }}
+  ansible.builtin.command: gh api repos/{{ github_repository }}/releases/tags/{{ vagrant_box_name }}
+  register: gh_release
+  changed_when: false
+  failed_when: gh_release.rc != 0 and 'HTTP 404' not in gh_release.stderr
+
+- name: Store GitHub release assets
+  ansible.builtin.set_fact:
+    github_release_assets: "{{ (gh_release.stdout|from_json).assets if gh_release.rc == 0 else [] }}"

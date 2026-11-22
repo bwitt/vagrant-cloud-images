@@ -1,0 +1,25 @@
+---
+- name: Get GitHub release {{ vagrant_box_name }}
+  ansible.builtin.include_tasks: github_release.yaml
+
+- name: Create metadata directory
+  ansible.builtin.tempfile:
+    state: directory
+  register: metadata_dir
+
+- name: Write Vagrant Box metadata {{ vagrant_box_metadata_file }}
+  ansible.builtin.copy:
+    content: "{{ github_release_assets|box_versions(vagrant_box_name)|box_metadata(vagrant_cloud_user ~ '/' ~ vagrant_box_name, vagrant_box_description)|to_nice_json }}"
+    dest: "{{ metadata_dir.path }}/{{ vagrant_box_metadata_file }}"
+
+- name: Upload Vagrant Box metadata {{ vagrant_box_metadata_url }}
+  ansible.builtin.command: gh release upload {{ vagrant_box_name }} {{ metadata_dir.path }}/{{ vagrant_box_metadata_file }} --clobber --repo {{ github_repository }}
+  register: gh_upload_metadata
+  retries: 3
+  delay: 5
+  until: gh_upload_metadata is success
+
+- name: Remove metadata directory
+  ansible.builtin.file:
+    path: "{{ metadata_dir.path }}"
+    state: absent

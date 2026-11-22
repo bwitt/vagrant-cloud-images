@@ -32,18 +32,20 @@ providers:
 - qemu
 - libvirt
 
-hcp_base_endpoint: 'https://api.cloud.hashicorp.com'
-vagrant_cloud_api: "vagrant/2022-09-30"
-vagrant_cloud_url: "{{ hcp_base_endpoint }}/{{ vagrant_cloud_api }}"
+# Boxes are hosted as GitHub release assets, one release per box
+github_repository: "{{ lookup('env', 'GITHUB_REPOSITORY', default='alchemy-solutions/vagrant-cloud-images') }}"
+github_url: "https://github.com/{{ github_repository }}"
 vagrant_cloud_user: "{{ lookup('env', 'VAGRANT_CLOUD_USER', default='cloud-image') }}"
-vagrant_cloud_token: "{{ lookup('env', 'VAGRANT_CLOUD_TOKEN', default=Undefined) }}"
+vagrant_box_description: "{{ release.description }} Cloud Image"
+vagrant_box_metadata_file: "{{ vagrant_box_name }}.json"
+vagrant_box_metadata_url: "{{ github_url }}/releases/download/{{ vagrant_box_name }}/{{ vagrant_box_metadata_file }}"
 vagrant_ssh_default_key_pub: "{{ lookup('url', 'https://raw.githubusercontent.com/hashicorp/vagrant/refs/heads/master/keys/vagrant.pub') }}"
 vagrant_ssh_key_pub: "{{ lookup('env', 'VAGRANT_SSH_KEY_PUB', default=vagrant_ssh_default_key_pub) }}"
 
 # Cleanup
-hcp_min_version_retention: 5
-hcp_max_version_retention: 10
-hcp_max_version_days: 183 # 6 months
+min_version_retention: 5
+max_version_retention: 10
+max_version_days: 183 # 6 months
 
 # Mail alert
 mail_password: "{{ lookup('env', 'MAIL_PASSWORD', default=Undefined) }}"

@@ -6,7 +6,7 @@ This repository builds Vagrant Cloud images using the `build.sh` script. It supp
 ## Prerequisites
 - Bash 5.0+
 - `qemu-img` and `libguestfs-tools` or `docekr` installed
-- `VAGRANT_CLOUD_TOKEN` environment variable set
+- `gh` authenticated (`gh auth login` or `GH_TOKEN` environment variable) with write access to the repository releases
 
 ## Quick Start
 ```bash
@@ -19,6 +19,8 @@ Use `-e` to set a variable:
 ./build.sh -e filter_distro=centos -e filter_arch=arm64 -e preserve=true -e upload=false
 ```
 
+Set `GITHUB_REPOSITORY` (e.g. `myuser/vagrant-cloud-images`) to upload to a fork.
+
 ## Environment Variables
 | Variable          | Description |
 |-------------------|-------------|
@@ -28,11 +30,11 @@ Use `-e` to set a variable:
 | `filter_provider` | Provider to target (`virtualbox`, `qemu`, `libvirt`) |
 | `overwrite`       | Delete existing image before building (`true` / `false`) |
 | `preserve`        | Keep intermediate artifacts after build (`true` / `false`) |
-| `upload`          | Push the built image to Vagrant Cloud (`true` / `false`) |
+| `upload`          | Upload the built image to GitHub releases (`true` / `false`) |
 
 ## Troubleshooting
 - `guestfish: command not found` – install the required packages (`libguestfs-tools`).
-- `VAGRANT_CLOUD_TOKEN` not set – export it: `export VAGRANT_CLOUD_TOKEN=your_token`.
+- `gh` not authenticated – run `gh auth login` or export `GH_TOKEN`.
 - Image not uploading – check network connectivity and token scopes.
 
 ## Contributing

@@ -2,53 +2,53 @@
 
 [//]: # (Do NOT edit the README.md file itself, edit the template file instead: ansible/templates/README.md.j2)
 
-Purpose of this project is to provide [Vagrant Box images](https://app.vagrantup.com/cloud-image) based on public
+Purpose of this project is to provide [Vagrant Box images](https://github.com/alchemy-solutions/vagrant-cloud-images/releases) based on public
 colud images of various GNU/Linux distributions with no modifications at
 all (or, at least, the minimum possible).
 
 | distribution | vagrant box | EOS | EOL |
 | ------------ | ----------- | --- | --- |
-| AlmaLinux 10 | [cloud-image/almalinux-10](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | :green_circle: `May 2030` | :green_circle: `May 2035` |
-| AlmaLinux 9 | [cloud-image/almalinux-9](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | :green_circle: `May 2027` | :green_circle: `May 2032` |
-| AlmaLinux 8 | [cloud-image/almalinux-8](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | :red_circle: `May 2024` | :green_circle: `Mar 2029` |
-| Alpine Linux v3.24 | [cloud-image/alpine-3.24](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.24) | :green_circle: `Jun 2028` | :green_circle: `Jun 2028` |
-| Alpine Linux v3.23 | [cloud-image/alpine-3.23](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.23) | :green_circle: `Nov 2027` | :green_circle: `Nov 2027` |
-| Alpine Linux v3.22 | [cloud-image/alpine-3.22](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.22) | :green_circle: `May 2027` | :green_circle: `May 2027` |
-| Alpine Linux v3.21 | [cloud-image/alpine-3.21](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.21) | :green_circle: `Nov 2026` | :green_circle: `Nov 2026` |
-| Alpine Linux v3.20 | [cloud-image/alpine-3.20](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.20) | :red_circle: `Apr 2026` | :red_circle: `Apr 2026` |
-| Alpine Linux v3.19 | [cloud-image/alpine-3.19](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/alpine-3.19) | :red_circle: `Nov 2025` | :red_circle: `Nov 2025` |
-| Amazon Linux 2023 | [cloud-image/amazon-linux-2023](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/amazon-linux-2023) | :green_circle: `Sep 2029` | :green_circle: `Sep 2029` |
-| Amazon Linux 2 | [cloud-image/amazon-linux-2](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/amazon-linux-2) | :red_circle: `Jun 2026` | :red_circle: `Jun 2026` |
-| Arch Linux | [cloud-image/arch-linux](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/arch-linux) | :green_circle: | :green_circle: |
-| CentOS Stream 10 | [cloud-image/centos-10-stream](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/centos-10-stream) | :green_circle: `Jan 2030` | :green_circle: `Jan 2030` |
-| CentOS Stream 9 | [cloud-image/centos-9-stream](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/centos-9-stream) | :green_circle: `May 2027` | :green_circle: `May 2027` |
-| CentOS Stream 8 | [cloud-image/centos-8-stream](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/centos-8-stream) | :red_circle: `May 2024` | :red_circle: `May 2024` |
-| CentOS 8 | [cloud-image/centos-8](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/centos-8) | :red_circle: `Dec 2021` | :red_circle: `Dec 2021` |
-| CentOS 7 | [cloud-image/centos-7](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/centos-7) | :red_circle: `Jun 2024` | :red_circle: `Jun 2024` |
-| Debian 13 (Trixie) | [cloud-image/debian-13](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | :green_circle: `Aug 2028` | :green_circle: `Aug 2030` |
-| Debian 12 (Bookworm) | [cloud-image/debian-12](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | :red_circle: `Jun 2026` | :green_circle: `Jun 2028` |
-| Debian 11 (Bullseye) | [cloud-image/debian-11](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-11) | :red_circle: `Aug 2024` | :red_circle: `Jun 2026` |
-| Debian 10 (Buster) | [cloud-image/debian-10](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-10) | :red_circle: `Aug 2022` | :red_circle: `Jun 2024` |
-| Fedora 44 | [cloud-image/fedora-44](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-44) | :green_circle: `Jun 2027` | :green_circle: `Jun 2027` |
-| Fedora 43 | [cloud-image/fedora-43](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-43) | :green_circle: `Dec 2026` | :green_circle: `Dec 2026` |
-| Fedora 42 | [cloud-image/fedora-42](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-42) | :red_circle: `May 2026` | :red_circle: `May 2026` |
-| Fedora 41 | [cloud-image/fedora-41](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-41) | :red_circle: `Nov 2025` | :red_circle: `Nov 2025` |
-| Fedora 40 | [cloud-image/fedora-40](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-40) | :red_circle: `May 2025` | :red_circle: `May 2025` |
-| Fedora 39 | [cloud-image/fedora-39](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/fedora-39) | :red_circle: `Nov 2024` | :red_circle: `Nov 2024` |
-| Oracle Linux 10 | [cloud-image/oracle-linux-10](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/oracle-linux-10) | :green_circle: `Jun 2035` | :green_circle: `Jun 2038` |
-| Oracle Linux 9 | [cloud-image/oracle-linux-9](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/oracle-linux-9) | :green_circle: `Jun 2032` | :green_circle: `Jun 2035` |
-| Oracle Linux 8 | [cloud-image/oracle-linux-8](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/oracle-linux-8) | :green_circle: `Jul 2029` | :green_circle: `Jul 2032` |
-| Oracle Linux 7 | [cloud-image/oracle-linux-7](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/oracle-linux-7) | :red_circle: `Dec 2024` | :green_circle: `Jul 2029` |
-| Rocky Linux 10 (Red Quartz) | [cloud-image/rocky-10](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | :green_circle: `May 2030` | :green_circle: `May 2035` |
-| Rocky Linux 9 (Blue Onyx) | [cloud-image/rocky-9](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | :green_circle: `May 2027` | :green_circle: `May 2032` |
-| Rocky Linux 8 (Green Obsidian) | [cloud-image/rocky-8](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | :red_circle: `May 2024` | :green_circle: `May 2029` |
-| Ubuntu 26.04 LTS (Resolute Racoon) | [cloud-image/ubuntu-26.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | :green_circle: `Jun 2031` | :green_circle: `Apr 2038` |
-| Ubuntu 24.04 LTS (Noble Numbat) | [cloud-image/ubuntu-24.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | :green_circle: `Jun 2029` | :green_circle: `Apr 2036` |
-| Ubuntu 22.04 LTS (Jammy Jellyfish) | [cloud-image/ubuntu-22.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | :green_circle: `Jun 2027` | :green_circle: `Apr 2034` |
-| Ubuntu 20.04 LTS (Focal Fossa) | [cloud-image/ubuntu-20.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-20.04) | :red_circle: `Apr 2025` | :green_circle: `Apr 2032` |
-| Ubuntu 18.04 LTS (Bionic Beaver) | [cloud-image/ubuntu-18.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-18.04) | :red_circle: `Jun 2023` | :green_circle: `Apr 2030` |
-| Ubuntu 16.04 LTS (Xenial Xerus) | [cloud-image/ubuntu-16.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-16.04) | :red_circle: `Apr 2021` | :green_circle: `Apr 2028` |
-| Ubuntu 14.04 LTS (Trusty Tahr) | [cloud-image/ubuntu-14.04](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-14.04) | :red_circle: `Apr 2019` | :red_circle: `Apr 2026` |
+| AlmaLinux 10 | [cloud-image/almalinux-10](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/almalinux-10) | :green_circle: `May 2030` | :green_circle: `May 2035` |
+| AlmaLinux 9 | [cloud-image/almalinux-9](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/almalinux-9) | :green_circle: `May 2027` | :green_circle: `May 2032` |
+| AlmaLinux 8 | [cloud-image/almalinux-8](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/almalinux-8) | :red_circle: `May 2024` | :green_circle: `Mar 2029` |
+| Alpine Linux v3.24 | [cloud-image/alpine-3.24](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.24) | :green_circle: `Jun 2028` | :green_circle: `Jun 2028` |
+| Alpine Linux v3.23 | [cloud-image/alpine-3.23](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.23) | :green_circle: `Nov 2027` | :green_circle: `Nov 2027` |
+| Alpine Linux v3.22 | [cloud-image/alpine-3.22](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.22) | :green_circle: `May 2027` | :green_circle: `May 2027` |
+| Alpine Linux v3.21 | [cloud-image/alpine-3.21](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.21) | :green_circle: `Nov 2026` | :green_circle: `Nov 2026` |
+| Alpine Linux v3.20 | [cloud-image/alpine-3.20](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.20) | :red_circle: `Apr 2026` | :red_circle: `Apr 2026` |
+| Alpine Linux v3.19 | [cloud-image/alpine-3.19](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/alpine-3.19) | :red_circle: `Nov 2025` | :red_circle: `Nov 2025` |
+| Amazon Linux 2023 | [cloud-image/amazon-linux-2023](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/amazon-linux-2023) | :green_circle: `Sep 2029` | :green_circle: `Sep 2029` |
+| Amazon Linux 2 | [cloud-image/amazon-linux-2](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/amazon-linux-2) | :red_circle: `Jun 2026` | :red_circle: `Jun 2026` |
+| Arch Linux | [cloud-image/arch-linux](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/arch-linux) | :green_circle: | :green_circle: |
+| CentOS Stream 10 | [cloud-image/centos-10-stream](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/centos-10-stream) | :green_circle: `Jan 2030` | :green_circle: `Jan 2030` |
+| CentOS Stream 9 | [cloud-image/centos-9-stream](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/centos-9-stream) | :green_circle: `May 2027` | :green_circle: `May 2027` |
+| CentOS Stream 8 | [cloud-image/centos-8-stream](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/centos-8-stream) | :red_circle: `May 2024` | :red_circle: `May 2024` |
+| CentOS 8 | [cloud-image/centos-8](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/centos-8) | :red_circle: `Dec 2021` | :red_circle: `Dec 2021` |
+| CentOS 7 | [cloud-image/centos-7](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/centos-7) | :red_circle: `Jun 2024` | :red_circle: `Jun 2024` |
+| Debian 13 (Trixie) | [cloud-image/debian-13](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/debian-13) | :green_circle: `Aug 2028` | :green_circle: `Aug 2030` |
+| Debian 12 (Bookworm) | [cloud-image/debian-12](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/debian-12) | :red_circle: `Jun 2026` | :green_circle: `Jun 2028` |
+| Debian 11 (Bullseye) | [cloud-image/debian-11](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/debian-11) | :red_circle: `Aug 2024` | :red_circle: `Jun 2026` |
+| Debian 10 (Buster) | [cloud-image/debian-10](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/debian-10) | :red_circle: `Aug 2022` | :red_circle: `Jun 2024` |
+| Fedora 44 | [cloud-image/fedora-44](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-44) | :green_circle: `Jun 2027` | :green_circle: `Jun 2027` |
+| Fedora 43 | [cloud-image/fedora-43](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-43) | :green_circle: `Dec 2026` | :green_circle: `Dec 2026` |
+| Fedora 42 | [cloud-image/fedora-42](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-42) | :red_circle: `May 2026` | :red_circle: `May 2026` |
+| Fedora 41 | [cloud-image/fedora-41](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-41) | :red_circle: `Nov 2025` | :red_circle: `Nov 2025` |
+| Fedora 40 | [cloud-image/fedora-40](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-40) | :red_circle: `May 2025` | :red_circle: `May 2025` |
+| Fedora 39 | [cloud-image/fedora-39](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/fedora-39) | :red_circle: `Nov 2024` | :red_circle: `Nov 2024` |
+| Oracle Linux 10 | [cloud-image/oracle-linux-10](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/oracle-linux-10) | :green_circle: `Jun 2035` | :green_circle: `Jun 2038` |
+| Oracle Linux 9 | [cloud-image/oracle-linux-9](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/oracle-linux-9) | :green_circle: `Jun 2032` | :green_circle: `Jun 2035` |
+| Oracle Linux 8 | [cloud-image/oracle-linux-8](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/oracle-linux-8) | :green_circle: `Jul 2029` | :green_circle: `Jul 2032` |
+| Oracle Linux 7 | [cloud-image/oracle-linux-7](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/oracle-linux-7) | :red_circle: `Dec 2024` | :green_circle: `Jul 2029` |
+| Rocky Linux 10 (Red Quartz) | [cloud-image/rocky-10](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/rocky-10) | :green_circle: `May 2030` | :green_circle: `May 2035` |
+| Rocky Linux 9 (Blue Onyx) | [cloud-image/rocky-9](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/rocky-9) | :green_circle: `May 2027` | :green_circle: `May 2032` |
+| Rocky Linux 8 (Green Obsidian) | [cloud-image/rocky-8](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/rocky-8) | :red_circle: `May 2024` | :green_circle: `May 2029` |
+| Ubuntu 26.04 LTS (Resolute Racoon) | [cloud-image/ubuntu-26.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-26.04) | :green_circle: `Jun 2031` | :green_circle: `Apr 2038` |
+| Ubuntu 24.04 LTS (Noble Numbat) | [cloud-image/ubuntu-24.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-24.04) | :green_circle: `Jun 2029` | :green_circle: `Apr 2036` |
+| Ubuntu 22.04 LTS (Jammy Jellyfish) | [cloud-image/ubuntu-22.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-22.04) | :green_circle: `Jun 2027` | :green_circle: `Apr 2034` |
+| Ubuntu 20.04 LTS (Focal Fossa) | [cloud-image/ubuntu-20.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-20.04) | :red_circle: `Apr 2025` | :green_circle: `Apr 2032` |
+| Ubuntu 18.04 LTS (Bionic Beaver) | [cloud-image/ubuntu-18.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-18.04) | :red_circle: `Jun 2023` | :green_circle: `Apr 2030` |
+| Ubuntu 16.04 LTS (Xenial Xerus) | [cloud-image/ubuntu-16.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-16.04) | :red_circle: `Apr 2021` | :green_circle: `Apr 2028` |
+| Ubuntu 14.04 LTS (Trusty Tahr) | [cloud-image/ubuntu-14.04](https://github.com/alchemy-solutions/vagrant-cloud-images/releases/tag/ubuntu-14.04) | :red_circle: `Apr 2019` | :red_circle: `Apr 2026` |
 
 ## cloud-init injection
 
@@ -121,6 +121,17 @@ end
 
 # Usage
 
+Boxes are hosted as [GitHub release](https://github.com/alchemy-solutions/vagrant-cloud-images/releases) assets, one
+release per box. Since there is no Vagrant Cloud anymore, point `box_url` to
+the box metadata file published with each release:
+
+```ruby
+config.vm.box = "cloud-image/<choose-a-distro>"
+config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+```
+
+`vagrant box outdated` and `vagrant box update` keep working as before.
+
 There are multiple Vagrant providers available:
 
 * virtualbox
@@ -131,7 +142,7 @@ There are multiple Vagrant providers available:
 ## virtualbox
 
 ```bash
-vagrant init cloud-image/<choose-a-distro>
+vagrant init cloud-image/<choose-a-distro> https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json
 vagrant up
 ```
 
@@ -150,6 +161,7 @@ Create a minimal `Vagrantfile` as follow:
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 end
 ```
@@ -170,6 +182,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-libvirt"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
 
@@ -224,6 +237,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :qemu do |qemu|
@@ -254,6 +268,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "https://github.com/alchemy-solutions/vagrant-cloud-images/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.box_architecture = "amd64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 

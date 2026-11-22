@@ -57,7 +57,9 @@ class FilterModule(object):
             'get_checksum': self.get_checksum,
             'get_links': self.get_links,
             'get_latest_version': self.get_latest_version,
-            'semantic_version': self.semantic_version
+            'semantic_version': self.semantic_version,
+            'box_versions': self.box_versions,
+            'box_metadata': self.box_metadata
         }
 
     def is_expired(self, str_date=None):
@@ -149,3 +151,38 @@ class FilterModule(object):
         if build is not None:
             ver.build = build
         return f"{ver}"
+
+    def box_versions(self, assets, box_name):
+        # Group "<box_name>-<version>-<arch>-<provider>.box" release assets by version, newest first
+        versions = {}
+        prefix = f"{box_name}-"
+        for asset in assets:
+            name = asset['name']
+            if asset.get('state', 'uploaded') != 'uploaded' or not name.startswith(prefix) or not name.endswith('.box'):
+                continue
+            try:
+                version, arch, provider = name[len(prefix):-len('.box')].rsplit('-', 2)
+            except ValueError:
+                continue
+            entry = versions.setdefault(version, {'version': version, 'created_at': asset['created_at'], 'assets': []})
+            entry['created_at'] = min(entry['created_at'], asset['created_at'])
+            entry['assets'].append(dict(asset, arch=arch, provider=provider))
+        return sorted(versions.values(), key=lambda v: v['created_at'], reverse=True)
+
+    def box_metadata(self, versions, name, description=''):
+        # https://developer.hashicorp.com/vagrant/docs/boxes/format#box-metadata
+        metadata = {'name': name, 'description': description, 'versions': []}
+        for version in versions:
+            providers = []
+            for asset in sorted(version['assets'], key=lambda a: (a['provider'], a['arch'])):
+                provider = {
+                    'name': asset['provider'],
+                    'url': asset['browser_download_url'],
+                    'architecture': asset['arch'],
+                    'default_architecture': asset['arch'] == 'amd64',
+                }
+                if asset.get('digest'):
+                    provider['checksum_type'], provider['checksum'] = asset['digest'].split(':', 1)
+                providers.append(provider)
+            metadata['versions'].append({'version': version['version'], 'providers': providers})
+        return metadata

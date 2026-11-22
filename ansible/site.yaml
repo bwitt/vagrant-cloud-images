@@ -12,9 +12,6 @@
   - name: Filter distros data
     ansible.builtin.include_tasks: filter.yaml
 
-  - name: Refresh VAGRANT_CLOUD_TOKEN
-    ansible.builtin.include_tasks: hcp.yaml
-
   - name: Include distro tasks
     ansible.builtin.include_tasks: distro.yaml
     loop: "{{ distros }}"

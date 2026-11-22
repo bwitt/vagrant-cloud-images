@@ -2,7 +2,7 @@
 
 [//]: # (Do NOT edit the README.md file itself, edit the template file instead: ansible/templates/README.md.j2)
 
-Purpose of this project is to provide [Vagrant Box images](https://app.vagrantup.com/cloud-image) based on public
+Purpose of this project is to provide [Vagrant Box images]({{ github_url }}/releases) based on public
 colud images of various GNU/Linux distributions with no modifications at
 all (or, at least, the minimum possible).
 
@@ -13,7 +13,7 @@ all (or, at least, the minimum possible).
 {% set eos = release.eos|default(release.eol|default(None)) %}
 {% set eol = release.eol|default(eos) %}
 {% set cloud_image = 'cloud-image/'+distro.code+'-'+release.code|default(release.version) %}
-{% set cloud_image_url = 'https://portal.cloud.hashicorp.com/vagrant/discover/'+cloud_image %}
+{% set cloud_image_url = github_url+'/releases/tag/'+distro.code+'-'+release.code|default(release.version) %}
 | {{ release.description }} | [{{ cloud_image }}]({{ cloud_image_url }}) | {% if distro.rolling|default(False) %}:green_circle: | :green_circle:{% else %}{% if eos|is_expired %}:red_circle: `{{ eos }}`{% else %}{% if eos == None %}-{% else %}:green_circle: `{{ eos }}`{% endif %}{% endif %} | {% if eol|is_expired %}:red_circle: `{{ eol }}`{% else %}{% if eol == None %}-{% else %}:green_circle: `{{ eol }}`{% endif %}{% endif %}{% endif %} |
 {% endfor %}
 {% endfor %}
@@ -73,6 +73,17 @@ end
 
 # Usage
 
+Boxes are hosted as [GitHub release]({{ github_url }}/releases) assets, one
+release per box. Since there is no Vagrant Cloud anymore, point `box_url` to
+the box metadata file published with each release:
+
+```ruby
+config.vm.box = "cloud-image/<choose-a-distro>"
+config.vm.box_url = "{{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json"
+```
+
+`vagrant box outdated` and `vagrant box update` keep working as before.
+
 There are multiple Vagrant providers available:
 
 * virtualbox
@@ -83,7 +94,7 @@ There are multiple Vagrant providers available:
 ## virtualbox
 
 ```bash
-vagrant init cloud-image/<choose-a-distro>
+vagrant init cloud-image/<choose-a-distro> {{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json
 vagrant up
 ```
 
@@ -102,6 +113,7 @@ Create a minimal `Vagrantfile` as follow:
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "{{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 end
 ```
@@ -122,6 +134,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-libvirt"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "{{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
 
@@ -176,6 +189,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "{{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :qemu do |qemu|
@@ -206,6 +220,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-qemu"
 
   config.vm.box = "cloud-image/<choose-a-distro>"
+  config.vm.box_url = "{{ github_url }}/releases/download/<choose-a-distro>/<choose-a-distro>.json"
   config.vm.box_architecture = "amd64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
